@@ -1,0 +1,44 @@
+<apex:page controller="Test_Controller">
+<apex:form id="form">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script language="javascript">
+        // back true
+        function callSforceBackTrue(){
+            alert('sforceでBack呼び出し(true)');
+            sforce.one.back(true);
+        }
+        // back false
+        function callSforceBackFalse(){
+            alert('sforceでBack呼び出し(false)');
+            sforce.one.back(false);
+        }
+        function callSforceNavigateToUrlHome(){
+            alert('sforceからホームURL呼び出し');
+            sforce.one.navigateToURL("{!homeUrl}", true);
+        }
+        function callSforceNavigateToUrlVf(){
+            alert('sforceからVFページURL呼び出し');
+            sforce.one.navigateToURL("{!homeUrl}/apex/Test_Called", true);
+        }
+        function callSforceNavigateToUrlTab(){
+            alert('sforceからTabのURL呼び出し');
+            sforce.one.navigateToURL("{!homeUrl}/lightning/page/chatter", true);
+        }
+        function callWindowTopLocation(){
+            alert('WindowTopLocationからVF呼び出し');
+            window.top.location = "{!homeUrl}/apex/Test_Called";
+        }
+    </script>
+</head>
+<body>
+    <apex:commandButton action="{!updateUserFlg}" oncomplete="javascript:callSforceBackTrue()" value="テスト_sforce_back_true" />
+    <apex:commandButton action="{!updateUserFlg}" oncomplete="javascript:callSforceBackFalse()" value="テスト_sforce_back_false" />
+    <apex:commandButton action="{!updateUserFlg}" oncomplete="javascript:callSforceNavigateToUrlHome()" value="テスト_sforce_home" />
+    <apex:commandButton action="{!updateUserFlg}" oncomplete="javascript:callSforceNavigateToUrlVf()" value="テスト_sforce_vf" />
+    <apex:commandButton action="{!updateUserFlg}" oncomplete="javascript:callSforceNavigateToUrlTab()" value="テスト_sforce_tab" />
+    <br/>
+    <apex:commandButton action="{!updateUserFlg}" oncomplete="javascript:callWindowTopLocation()" value="テスト_WindowTopLocation" />
+</body>
+</apex:form>
+</apex:page>
